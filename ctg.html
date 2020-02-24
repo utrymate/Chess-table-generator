@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!--Mate Utry's project-->
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Chess table generator</title>
+
+    <body style="background-color:palegoldenrod;">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function() {
+
+                $('l1').append('<div>X <input type="text" id = "first" min = "2" max = "100"></div>');
+                $('l1').append('<div>Y <input type="text" id = "second" min = "2" max = "100"></div><br>');
+                $('l1').append('<div><input type="submit" id="create" value="Create"></div><br>');
+
+                var a = '';
+                var b = '';
+                $('#create').click(function() {
+                    var array = [];
+                    $('tbody').empty();
+                    a = $('#first').val();
+                    b = $('#second').val();
+
+                    for (var i = 0; i < b; i++) {
+                        var trEven = $('<tr>').addClass('trEven');
+                        var trOdd = $('<tr>').addClass('trOdd');
+                        if (i % 2 == 0) {
+                            array.push(trEven);
+                        } else {
+                            array.push(trOdd);
+                        }
+                        for (var j = 0; j < a; j++) {
+                            array[i].append('<td/>');
+                        }
+                    }
+                    $('tbody').append(array);
+                });
+            })
+        </script>
+        <h2>Generate a X * Y size Chess board</h2>
+        <h4>You don't need refresh the page to create a new one!</h4>
+        <l1></l1>
+        <table>
+            <tbody></tbody>
+        </table>
+        <style>
+            td {
+                background-color: #fff;
+                height: 30px;
+                width: 30px;
+            }
+            
+            td:nth-child(2n) {
+                background-color: #000;
+            }
+            
+            tr:nth-child(2n) td {
+                background-color: #000;
+            }
+            
+            tr:nth-child(2n) td:nth-child(2n) {
+                background-color: #fff;
+            }
+        </style>
+	</body>
+</head>
+<p>&copy; 2018 Mate Utry
+</html>
